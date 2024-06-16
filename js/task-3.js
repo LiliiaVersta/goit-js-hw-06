@@ -64,81 +64,107 @@
 // profile.updatePlayTime(20);
 // console.log(profile.getInfo()); // "Marco has 320 active hours!"
 
-const sortByDescendingFriendCount = users =>
-  users.toSorted((a, b) => a.friends.length < b.friends.length || -1);
-console.log(
-  sortByDescendingFriendCount([
-    {
-      name: 'Moore Hensley',
-      friends: ['Sharron Pace'],
-      gender: 'male',
-    },
-    {
-      name: 'Sharlene Bush',
-      friends: ['Briana Decker', 'Sharron Pace'],
-      gender: 'female',
-    },
-    {
-      name: 'Ross Vazquez',
-      friends: ['Marilyn Mcintosh', 'Padilla Garrison', 'Naomi Buckner'],
-      gender: 'male',
-    },
-    {
-      name: 'Elma Head',
-      friends: ['Goldie Gentry', 'Aisha Tran'],
-      gender: 'female',
-    },
-    {
-      name: 'Carey Barr',
-      friends: ['Jordan Sampson', 'Eddie Strong'],
-      gender: 'male',
-    },
-    {
-      name: 'Blackburn Dotson',
-      friends: ['Jacklyn Lucas', 'Linda Chapman'],
-      gender: 'male',
-    },
-    {
-      name: 'Sheree Anthony',
-      friends: ['Goldie Gentry', 'Briana Decker'],
-      gender: 'female',
-    },
-  ])
-);
-// [
-//   {
-//     name: "Ross Vazquez",
-//     friends: ["Marilyn Mcintosh", "Padilla Garrison", "Naomi Buckner"],
-//     gender: "male"
-//   },
-//   {
-//     name: "Sharlene Bush",
-//     friends: ["Briana Decker", "Sharron Pace"],
-//     gender: "female"
-//   },
-//   {
-//     name: "Elma Head",
-//     friends: ["Goldie Gentry", "Aisha Tran"],
-//     gender: "female"
-//   },
-//   {
-//     name: "Carey Barr",
-//     friends: ["Jordan Sampson", "Eddie Strong"],
-//     gender: "male"
-//   },
-//   {
-//     name: "Blackburn Dotson",
-//     friends: ["Jacklyn Lucas", "Linda Chapman"],
-//     gender: "male"
-//   },
-//   {
-//     name: "Sheree Anthony",
-//     friends: ["Goldie Gentry", "Briana Decker"],
-//     gender: "female"
-//   },
-//   {
-//     name: "Moore Hensley",
-//     friends: ["Sharron Pace"],
-//     gender: "male"
-//   }
-// ]
+// const sortByDescendingFriendCount = users =>
+//   users.toSorted((a, b) => a.friends.length < b.friends.length || -1);
+// console.log(
+//   sortByDescendingFriendCount([
+//     {
+//       name: 'Moore Hensley',
+//       friends: ['Sharron Pace'],
+//       gender: 'male',
+//     },
+//     {
+//       name: 'Sharlene Bush',
+//       friends: ['Briana Decker', 'Sharron Pace'],
+//       gender: 'female',
+//     },
+//     {
+//       name: 'Ross Vazquez',
+//       friends: ['Marilyn Mcintosh', 'Padilla Garrison', 'Naomi Buckner'],
+//       gender: 'male',
+//     },
+//     {
+//       name: 'Elma Head',
+//       friends: ['Goldie Gentry', 'Aisha Tran'],
+//       gender: 'female',
+//     },
+//     {
+//       name: 'Carey Barr',
+//       friends: ['Jordan Sampson', 'Eddie Strong'],
+//       gender: 'male',
+//     },
+//     {
+//       name: 'Blackburn Dotson',
+//       friends: ['Jacklyn Lucas', 'Linda Chapman'],
+//       gender: 'male',
+//     },
+//     {
+//       name: 'Sheree Anthony',
+//       friends: ['Goldie Gentry', 'Briana Decker'],
+//       gender: 'female',
+//     },
+//   ])
+// );
+// // [
+// //   {
+// //     name: "Ross Vazquez",
+// //     friends: ["Marilyn Mcintosh", "Padilla Garrison", "Naomi Buckner"],
+// //     gender: "male"
+// //   },
+// //   {
+// //     name: "Sharlene Bush",
+// //     friends: ["Briana Decker", "Sharron Pace"],
+// //     gender: "female"
+// //   },
+// //   {
+// //     name: "Elma Head",
+// //     friends: ["Goldie Gentry", "Aisha Tran"],
+// //     gender: "female"
+// //   },
+// //   {
+// //     name: "Carey Barr",
+// //     friends: ["Jordan Sampson", "Eddie Strong"],
+// //     gender: "male"
+// //   },
+// //   {
+// //     name: "Blackburn Dotson",
+// //     friends: ["Jacklyn Lucas", "Linda Chapman"],
+// //     gender: "male"
+// //   },
+// //   {
+// //     name: "Sheree Anthony",
+// //     friends: ["Goldie Gentry", "Briana Decker"],
+// //     gender: "female"
+// //   },
+// //   {
+// //     name: "Moore Hensley",
+// //     friends: ["Sharron Pace"],
+// //     gender: "male"
+// //   }
+// // ]
+class StringBuilder {
+  #value;
+  constructor(initialValue) {
+    this.#value = initialValue;
+  }
+  getValue() {
+    return this.#value;
+  }
+  padEnd(str) {
+    this.#value += str;
+  }
+  padStart(str) {
+    this.#value = str + this.#value;
+  }
+  padBoth(str) {
+    this.#value = str + this.#value + str;
+  }
+}
+const builder = new StringBuilder('.');
+console.log(builder.getValue()); // "."
+builder.padStart('^');
+console.log(builder.getValue()); // "^."
+builder.padEnd('^');
+console.log(builder.getValue()); // "^.^"
+builder.padBoth('=');
+console.log(builder.getValue()); // "=^.^="
